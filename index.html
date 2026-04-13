@@ -123,7 +123,7 @@ tbody tr:hover{background:#f8fafc}
       <h1>Productivity Overview</h1>
       <div class="topbar-meta">
         <span class="badge-live">LIVE</span>
-        13/04/2026 19:39 &nbsp;&middot;&nbsp; COLL_STATS.csv
+        13/04/2026 19:43 &nbsp;&middot;&nbsp; COLL_STATS.csv
       </div>
     </div>
     <section id="sec-overview" class="section active">
@@ -157,12 +157,69 @@ tbody tr:hover{background:#f8fafc}
   </main>
 </div>
 </div>
+
 <script>
 var PWD_HASH="51d11333976d83c82d79c16ed7ebdfddd62b17d5f15208124d6368765f489f3e";
-async function sha256(m){var b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(m));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,"0")).join("");}
-async function doLogin(){var v=document.getElementById("pwd-input").value,h=await sha256(v);if(h===PWD_HASH){document.getElementById("login-screen").style.display="none";document.getElementById("dashboard").style.display="block";sessionStorage.setItem("betz_auth",PWD_HASH);}else{document.getElementById("login-error").style.display="block";document.getElementById("pwd-input").value="";document.getElementById("pwd-input").focus();}}
-(function(){if(sessionStorage.getItem("betz_auth")===PWD_HASH){document.getElementById("login-screen").style.display="none";document.getElementById("dashboard").style.display="block";}else{setTimeout(()=>document.getElementById("pwd-input").focus(),80);}}());
-function goSection(k){document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".nav-item").forEach(x=>x.classList.remove("active"));var s=document.getElementById("sec-"+k),n=document.getElementById("nav-"+k);if(s)s.classList.add("active");if(n)n.classList.add("active");}
+
+async function sha256(m){
+    var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(m));
+    return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, "0")).join("");
+}
+
+async function doLogin(){
+    var v = document.getElementById("pwd-input").value,
+        h = await sha256(v);
+
+    if(h === PWD_HASH){
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        sessionStorage.setItem("betz_auth", PWD_HASH);
+
+        goSection("overview");
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    } else {
+        document.getElementById("login-error").style.display = "block";
+        document.getElementById("pwd-input").value = "";
+        document.getElementById("pwd-input").focus();
+    }
+}
+
+(function(){
+    if(sessionStorage.getItem("betz_auth") === PWD_HASH){
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+
+        goSection("overview");
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    } else {
+        setTimeout(() => document.getElementById("pwd-input").focus(), 80);
+    }
+})();
+
+function goSection(k){
+    document.querySelectorAll(".section").forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".nav-item").forEach(x => x.classList.remove("active"));
+
+    var s = document.getElementById("sec-" + k),
+        n = document.getElementById("nav-" + k);
+
+    if(s) s.classList.add("active");
+    if(n) n.classList.add("active");
+
+    window.scrollTo({ top: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+}
+
+window.addEventListener("load", function () {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+});
 </script>
 </body>
 </html>
