@@ -84,6 +84,7 @@ tfoot td{font-weight:700;background:#f8fafc;color:#0f172a;border-top:2px solid #
 .rep-name{font-weight:500;color:#1e293b}
 .fac-badge{background:#f1f5f9;border:1px solid #e2e8f0;color:#64748b;font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:5px;font-family:monospace}
 tbody tr:hover{background:#f8fafc}
+/* ── BILLING STYLES ── */
 .br-tabs{display:flex;gap:4px;border-bottom:2px solid #e2e8f0;margin-bottom:20px}
 .br-tab{padding:9px 18px;border-radius:8px 8px 0 0;font-size:13px;font-weight:600;cursor:pointer;border:1px solid transparent;border-bottom:none;color:#64748b;background:none;font-family:'Inter',sans-serif;position:relative;bottom:-2px;transition:color .15s}
 .br-tab:hover{color:#334155}
@@ -111,7 +112,6 @@ tbody tr:hover{background:#f8fafc}
 .br-z{color:#cbd5e1}
 .br-n{color:#3b82f6;font-weight:600;cursor:pointer;transition:background .1s}
 .br-n:hover{background:#eff6ff}
-.br-num-pub{color:#475569;font-weight:600}
 .br-man{color:#f59e0b;font-style:italic}
 .br-man-tag{font-size:10px;background:#fef3c7;border:1px solid #fde68a;border-radius:4px;padding:1px 6px;margin-left:4px;font-style:normal}
 .br-bg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
@@ -179,7 +179,7 @@ tbody tr:hover{background:#f8fafc}
       <h1>Productivity Overview</h1>
       <div class="topbar-meta">
         <span class="badge-live">LIVE</span>
-        21/04/2026 12:16 &nbsp;&middot;&nbsp; COLL_STATS.csv
+        21/04/2026 12:18 &nbsp;&middot;&nbsp; COLL_STATS.csv
       </div>
     </div>
     <section id="sec-overview" class="section active">
@@ -222,7 +222,7 @@ tbody tr:hover{background:#f8fafc}
   <div class="br-modal">
     <div class="br-mhdr">
       <div><div class="br-mtitle" id="brTitle"></div><div class="br-mmeta" id="brMeta"></div></div>
-      <button class="br-mclose" onclick="brClose()">&#x2715;</button>
+      <button class="br-mclose" onclick="brClose()">✕</button>
     </div>
     <div class="br-msearch"><input id="brSearch" placeholder="Search name, account, FACS, dispo..." oninput="brFilter()"></div>
     <div class="br-mbody" id="brBody"></div>
@@ -231,20 +231,22 @@ tbody tr:hover{background:#f8fafc}
 
 <script>
 (function(){
-const BD={"isMonday": false, "today": "04/21/2026", "dayName": "Tuesday", "friDate": "04/18/2026", "yestDate": "04/20/2026", "colLabels": ["Medisys OP", "Medisys IP", "Medisys PB", "Monte IP HB", "Monte OP HB", "Monte PB"], "ipUbDispos": [{"code": 2770, "label": "JHMC IP (2770)"}, {"code": 2771, "label": "FHMC IP (2771)"}, {"code": 2768, "label": "NR IP (2768)"}, {"code": 2767, "label": "MMV IP (2767)"}, {"code": 2765, "label": "MMC IP (2765)"}, {"code": 2769, "label": "BRH IP (2769)"}], "claimWqs": [{"num": 89409, "fac": "MEAC"}, {"num": 89448, "fac": "MMC"}, {"num": 89407, "fac": "MMV"}, {"num": 89408, "fac": "MNR"}, {"num": 88337, "fac": "MNR"}, {"num": 88339, "fac": "MMV"}, {"num": 88554, "fac": "MMC"}, {"num": 89453, "fac": "BRH"}], "cariskIncomplete": {"MEDISYS OP": 52, "MEDISYS IP": 0, "MEDISYS PB": 117, "MONTE IP HB": 2, "MONTE OP HB": 22, "MONTE PB": 1396}, "cariskMissing": {"MEDISYS OP": 3, "MEDISYS IP": 1, "MEDISYS PB": 17, "MONTE IP HB": 1, "MONTE OP HB": 20, "MONTE PB": 232}, "cariskTs": "04/21/2026 12:17", "cariskStatus": "ok", "status": "ok", "fileName": "database042112.csv", "monday": {"carisk": [0, 0, 0, 0, 0, 0], "relay": [0, 0, 0, 0, 0, 0], "total": [0, 0, 0, 0, 0, 0], "carisk_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "relay_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "total_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "leftover": [46, 0, 9, 0, 23, 0], "leftover_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "electronic": [73, 1, 185, 7, 134, 1850], "manually": [3, 0, 10, 3, 1, 18], "electronic_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "manually_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_email": [0, 0, 1, 0, 0, 0], "d_email_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fax": [0, 0, 2, 0, 1, 4], "d_fax_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_mail": [0, 0, 1, 0, 7, 4], "d_mail_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_secondary": [8, 1, 0, 0, 16, 0], "d_secondary_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_corrected": [0, 0, 1, 0, 1, 0], "d_corrected_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_need_w9": [0, 0, 0, 0, 0, 0], "d_need_w9_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fwd_blng": [0, 0, 0, 0, 0, 0], "d_fwd_blng_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_other": [0, 0, 0, 0, 0, 16], "d_other_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_totals": [8, 1, 5, 0, 25, 24], "ip_ubs": {"2770": {"total": 2}, "2771": {"total": 2}, "2768": {"total": 1}, "2767": {"total": 0}, "2765": {"total": 5}, "2769": {"total": 0}}, "nypd": 328, "nypd_rows": []}, "tuefri": {"carisk": [7, 1, 23, 1, 1, 281], "relay": [4, 1, 9, 1, 5, 37], "total": [11, 2, 32, 2, 6, 318], "carisk_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "relay_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "total_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "leftover": [46, 0, 9, 0, 23, 0], "leftover_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "electronic": [73, 1, 185, 7, 134, 1850], "manually": [3, 0, 10, 3, 1, 18], "electronic_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "manually_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_email": [0, 0, 1, 0, 0, 0], "d_email_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fax": [0, 0, 2, 0, 1, 4], "d_fax_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_mail": [0, 0, 1, 0, 7, 4], "d_mail_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_secondary": [8, 1, 0, 0, 16, 0], "d_secondary_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_corrected": [0, 0, 1, 0, 1, 0], "d_corrected_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_need_w9": [0, 0, 0, 0, 0, 0], "d_need_w9_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fwd_blng": [0, 0, 0, 0, 0, 0], "d_fwd_blng_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_other": [0, 0, 0, 0, 0, 16], "d_other_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_totals": [8, 1, 5, 0, 25, 24], "ip_ubs": {"2770": {"total": 2}, "2771": {"total": 2}, "2768": {"total": 1}, "2767": {"total": 0}, "2765": {"total": 5}, "2769": {"total": 0}}, "nypd": 328, "nypd_rows": []}};
+const BD={"isMonday": false, "today": "04/21/2026", "dayName": "Tuesday", "friDate": "04/18/2026", "yestDate": "04/20/2026", "colLabels": ["Medisys OP", "Medisys IP", "Medisys PB", "Monte IP HB", "Monte OP HB", "Monte PB"], "ipUbDispos": [{"code": 2770, "label": "JHMC IP (2770)"}, {"code": 2771, "label": "FHMC IP (2771)"}, {"code": 2768, "label": "NR IP (2768)"}, {"code": 2767, "label": "MMV IP (2767)"}, {"code": 2765, "label": "MMC IP (2765)"}, {"code": 2769, "label": "BRH IP (2769)"}], "claimWqs": [{"num": 89409, "fac": "MEAC"}, {"num": 89448, "fac": "MMC"}, {"num": 89407, "fac": "MMV"}, {"num": 89408, "fac": "MNR"}, {"num": 88337, "fac": "MNR"}, {"num": 88339, "fac": "MMV"}, {"num": 88554, "fac": "MMC"}, {"num": 89453, "fac": "BRH"}], "cariskIncomplete": {"MEDISYS OP": 52, "MEDISYS IP": 0, "MEDISYS PB": 117, "MONTE IP HB": 2, "MONTE OP HB": 22, "MONTE PB": 1395}, "cariskMissing": {"MEDISYS OP": 3, "MEDISYS IP": 1, "MEDISYS PB": 17, "MONTE IP HB": 1, "MONTE OP HB": 20, "MONTE PB": 230}, "cariskTs": "04/21/2026 12:18", "cariskStatus": "ok", "status": "ok", "fileName": "database042112.csv", "monday": {"carisk": [0, 0, 0, 0, 0, 0], "relay": [0, 0, 0, 0, 0, 0], "total": [0, 0, 0, 0, 0, 0], "carisk_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "relay_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "total_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "leftover": [46, 0, 9, 0, 23, 0], "leftover_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "electronic": [73, 1, 185, 7, 134, 1850], "manually": [3, 0, 10, 3, 1, 18], "electronic_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "manually_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_email": [0, 0, 1, 0, 0, 0], "d_email_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fax": [0, 0, 2, 0, 1, 4], "d_fax_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_mail": [0, 0, 1, 0, 7, 4], "d_mail_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_secondary": [8, 1, 0, 0, 16, 0], "d_secondary_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_corrected": [0, 0, 1, 0, 1, 0], "d_corrected_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_need_w9": [0, 0, 0, 0, 0, 0], "d_need_w9_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fwd_blng": [0, 0, 0, 0, 0, 0], "d_fwd_blng_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_other": [0, 0, 0, 0, 0, 16], "d_other_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_totals": [8, 1, 5, 0, 25, 24], "ip_ubs": {"2770": {"total": 2}, "2771": {"total": 2}, "2768": {"total": 1}, "2767": {"total": 0}, "2765": {"total": 5}, "2769": {"total": 0}}, "nypd": 328, "nypd_rows": []}, "tuefri": {"carisk": [7, 1, 23, 1, 1, 281], "relay": [4, 1, 9, 1, 5, 37], "total": [11, 2, 32, 2, 6, 318], "carisk_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "relay_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "total_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "leftover": [46, 0, 9, 0, 23, 0], "leftover_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "electronic": [73, 1, 185, 7, 134, 1850], "manually": [3, 0, 10, 3, 1, 18], "electronic_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "manually_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_email": [0, 0, 1, 0, 0, 0], "d_email_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fax": [0, 0, 2, 0, 1, 4], "d_fax_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_mail": [0, 0, 1, 0, 7, 4], "d_mail_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_secondary": [8, 1, 0, 0, 16, 0], "d_secondary_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_corrected": [0, 0, 1, 0, 1, 0], "d_corrected_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_need_w9": [0, 0, 0, 0, 0, 0], "d_need_w9_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_fwd_blng": [0, 0, 0, 0, 0, 0], "d_fwd_blng_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_other": [0, 0, 0, 0, 0, 16], "d_other_rows": {"MEDISYS OP": [], "MEDISYS IP": [], "MEDISYS PB": [], "MONTE IP HB": [], "MONTE OP HB": [], "MONTE PB": []}, "d_totals": [8, 1, 5, 0, 25, 24], "ip_ubs": {"2770": {"total": 2}, "2771": {"total": 2}, "2768": {"total": 1}, "2767": {"total": 0}, "2765": {"total": 5}, "2769": {"total": 0}}, "nypd": 328, "nypd_rows": []}};
 const PT=BD.colLabels;
 const PTK=["MEDISYS OP","MEDISYS IP","MEDISYS PB","MONTE IP HB","MONTE OP HB","MONTE PB"];
-const S=function(a){return a.reduce(function(x,y){return x+y;},0);};
+const S=a=>a.reduce((x,y)=>x+y,0);
 
+// Row storage — on window so inline onclicks can access it
 window._RS={};window._RI=0;
-function store(rows){var k='r'+(window._RI++);window._RS[k]=rows||[];return k;}
+function store(rows){const k='r'+(window._RI++);window._RS[k]=rows||[];return k;}
 
+// BILLING_HAS_DETAILS injected by Python: true=network version, false=GitHub version
 const HAS_DETAILS=false;
 
-// ── Modal ──────────────────────────────────────────────────────
-var _rows=[];
+// ── Modal ─────────────────────────────────────────────────────
+let _rows=[];
 window.brClose=function(e){if(!e||e.target===document.getElementById('brOverlay'))document.getElementById('brOverlay').classList.remove('open');};
-document.addEventListener('keydown',function(e){if(e.key==='Escape')brClose();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')brClose();});
 window.brOpen=function(title,rows,meta){
   if(!HAS_DETAILS)return;
   _rows=rows||[];
@@ -254,64 +256,55 @@ window.brOpen=function(title,rows,meta){
   brRender(_rows);
   document.getElementById('brOverlay').classList.add('open');
   document.getElementById('brSearch').focus();
-};
+}
 window.brFilter=function(){
-  var q=document.getElementById('brSearch').value.toLowerCase();
-  brRender(_rows.filter(function(r){return (r.ACCT||'').toLowerCase().includes(q)||(r.FACS||'').toLowerCase().includes(q)||(r.FNAME||'').toLowerCase().includes(q)||(r.LNAME||'').toLowerCase().includes(q)||String(r.DISPO||'').includes(q)||(r.VENDOR||'').toLowerCase().includes(q);}));
+  const q=document.getElementById('brSearch').value.toLowerCase();
+  brRender(_rows.filter(r=>(r.ACCT||'').toLowerCase().includes(q)||(r.FACS||'').toLowerCase().includes(q)||(r.FNAME||'').toLowerCase().includes(q)||(r.LNAME||'').toLowerCase().includes(q)||String(r.DISPO||'').includes(q)||(r.VENDOR||'').toLowerCase().includes(q)));
 };
 function brRender(rows){
-  var b=document.getElementById('brBody');
+  const b=document.getElementById('brBody');
   if(!rows.length){b.innerHTML='<div class="br-norows">No accounts found</div>';return;}
-  var html='<table class="br-tbl"><thead><tr><th>Account #</th><th>FACS</th><th>Name</th><th>Balance</th><th>Product</th><th>Dispo</th><th>Vendor</th></tr></thead><tbody>';
-  rows.forEach(function(r){
-    html+='<tr><td><span class="br-acct">'+(r.ACCT||'—')+'</span></td><td>'+(r.FACS||'—')+'</td><td style="text-align:left">'+(r.FNAME||'')+' '+(r.LNAME||'')+'</td><td>$'+parseFloat(r.BALANCE||0).toLocaleString('en-US',{minimumFractionDigits:2})+'</td><td><span class="br-pt">'+(r.PT||'—')+'</span></td><td>'+(r.DISPO||'—')+'</td><td>'+(r.VENDOR||'—')+'</td></tr>';
-  });
-  html+='</tbody></table>';
-  b.innerHTML=html;
+  b.innerHTML=`<table class="br-tbl"><thead><tr><th>Account #</th><th>FACS</th><th>Name</th><th>Balance</th><th>Product</th><th>Dispo</th><th>Vendor</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="br-acct">${r.ACCT||'—'}</span></td><td>${r.FACS||'—'}</td><td style="text-align:left">${r.FNAME||''} ${r.LNAME||''}</td><td>$${parseFloat(r.BALANCE||0).toLocaleString('en-US',{minimumFractionDigits:2})}</td><td><span class="br-pt">${r.PT||'—'}</span></td><td>${r.DISPO||'—'}</td><td>${r.VENDOR||'—'}</td></tr>`).join('')}</tbody></table>`;
 }
 
-// ── Cell builder ───────────────────────────────────────────────
+// ── Cell builder ──────────────────────────────────────────────
 function nc(v,rows,lbl,pt){
   if(!v) return '<td class="br-z">—</td>';
-  if(!HAS_DETAILS) return '<td class="br-num-pub">'+v+'</td>';
-  var k=store(rows);
-  var sl=(lbl||'').replace(/'/g,"&#39;");
-  var sp=(pt||'').replace(/'/g,"&#39;");
-  return '<td class="br-n" onclick="brOpen(''+sl+'',window._RS[''+k+''],''+sp+'')">'+v+'</td>';
+  if(!HAS_DETAILS) return `<td class="br-num-pub">${v}</td>`;
+  const k=store(rows);
+  const sl=(lbl||'').replace(/'/g,"&#39;");
+  const sp=(pt||'').replace(/'/g,"&#39;");
+  return`<td class="br-n" onclick="brOpen('${sl}',window._RS['${k}'],'${sp}')">${v}</td>`;
 }
 
-// ── Table builder ──────────────────────────────────────────────
+// ── Table builder ─────────────────────────────────────────────
 function mkTable(title,rowDefs){
-  var h='<div class="br-tw"><div class="br-ttl">'+title+'</div><table class="br-t"><tr><th></th>';
-  PT.forEach(function(l){h+='<th>'+l+'</th>';});
-  h+='<th>Total</th></tr>';
-  rowDefs.forEach(function(rd){
-    var lbl=rd[0],c=rd[1],rm=rd[2],tot=rd[3];
-    h+='<tr class="'+(tot?'br-tot':'')+'"><td>'+lbl+'</td>';
-    PTK.forEach(function(pk,i){h+=nc(c[i],rm?rm[pk]:[],lbl,PT[i]);});
-    h+='<td class="br-sum">'+S(c)+'</td></tr>';
-  });
-  h+='</table></div>';
-  return h;
+  return`<div class="br-tw"><div class="br-ttl">${title}</div><table class="br-t">
+    <tr><th></th>${PT.map(l=>`<th>${l}</th>`).join('')}<th>Total</th></tr>
+    ${rowDefs.map(([lbl,c,rm,tot])=>`<tr class="${tot?'br-tot':''}"><td>${lbl}</td>
+      ${PTK.map((k,i)=>nc(c[i],rm?rm[k]:[],lbl,PT[i])).join('')}
+      <td class="br-sum">${S(c)}</td></tr>`).join('')}
+  </table></div>`;
 }
 
-// ── Panel builder ──────────────────────────────────────────────
+// ── Panel builder ─────────────────────────────────────────────
 function buildPanel(m,sheetName,dateStr){
-  var nypd_k=HAS_DETAILS?store(m.nypd_rows||[]):null;
-  var h='<div class="br-phdr"><div class="br-pname">'+sheetName+'</div><div class="br-pdate">'+dateStr+'</div>';
-  h+='<button class="br-dl" onclick="brDl(''+sheetName+'')">';
-  h+='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Excel</button></div>';
-
-  h+='<div class="br-kpis">';
-  h+='<div class="br-kpi"><div class="br-kl">To Bill Today</div><div class="br-kv" style="color:#3b82f6">'+S(m.total)+'</div></div>';
-  h+='<div class="br-kpi"><div class="br-kl">Electronic</div><div class="br-kv" style="color:#06b6d4">'+S(m.electronic)+'</div></div>';
-  h+='<div class="br-kpi"><div class="br-kl">Left Over</div><div class="br-kv" style="color:#f59e0b">'+S(m.leftover)+'</div></div>';
-  if(HAS_DETAILS){
-    h+='<div class="br-kpi" style="cursor:pointer" onclick="brOpen('NYPD',window._RS[''+nypd_k+''],'dispo 2201')"><div class="br-kl">NYPD (2201)</div><div class="br-kv" style="color:#10b981">'+m.nypd+'</div></div>';
-  } else {
-    h+='<div class="br-kpi"><div class="br-kl">NYPD (2201)</div><div class="br-kv" style="color:#10b981">'+m.nypd+'</div></div>';
-  }
-  h+='</div>';
+  const nypd_k = HAS_DETAILS ? store(m.nypd_rows||[]) : null;
+  let h=`<div class="br-phdr">
+    <div class="br-pname">${sheetName}</div>
+    <div class="br-pdate">${dateStr}</div>
+    <button class="br-dl" onclick="brDl('${sheetName}')">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>Download Excel
+    </button>
+  </div>
+  <div class="br-kpis">
+    <div class="br-kpi"><div class="br-kl">To Bill Today</div><div class="br-kv" style="color:#3b82f6">${S(m.total)}</div></div>
+    <div class="br-kpi"><div class="br-kl">Electronic</div><div class="br-kv" style="color:#06b6d4">${S(m.electronic)}</div></div>
+    <div class="br-kpi"><div class="br-kl">Left Over</div><div class="br-kv" style="color:#f59e0b">${S(m.leftover)}</div></div>
+    <div class="br-kpi" ${HAS_DETAILS?`style="cursor:pointer" onclick="brOpen('NYPD',window._RS['${nypd_k}'],'dispo 2201')"`:''}><div class="br-kl">NYPD (2201)</div><div class="br-kv" style="color:#10b981">${m.nypd}</div></div>
+  </div>`;
 
   h+=mkTable('To Bill Today',[
     ['Carisk',       m.carisk, m.carisk_rows],
@@ -319,138 +312,118 @@ function buildPanel(m,sheetName,dateStr){
     ['To Bill Today',m.total,  m.total_rows, true],
   ]);
 
-  h+='<div class="br-tw"><div class="br-ttl">Claims Needing Attention</div><table class="br-t">';
-  h+='<tr><th></th>';PT.forEach(function(l){h+='<th>'+l+'</th>';});h+='<th>Total</th></tr>';
-  h+='<tr><td>Left Over Claims</td>';
-  PTK.forEach(function(pk,i){h+=nc(m.leftover[i],m.leftover_rows[pk],'Left Over',PT[i]);});
-  h+='<td class="br-sum">'+S(m.leftover)+'</td></tr>';
-  h+='<tr><td>Incomplete Carisk'+(BD.cariskTs&&BD.cariskTs!=='—'?'<span style="font-size:10px;color:#94a3b8;margin-left:6px">'+BD.cariskTs+'</span>':'')+'</td>';
-  PTK.forEach(function(pk,i){var v=(BD.cariskIncomplete||{})[pk]||0;h+=v?'<td style="color:#3b82f6;font-weight:600">'+v+'</td>':'<td class="br-z">—</td>';});
-  h+='<td class="br-sum">'+Object.values(BD.cariskIncomplete||{}).reduce(function(a,b){return a+b;},0)+'</td></tr>';
-  h+='<tr><td>Missing Documents</td>';
-  PTK.forEach(function(pk,i){var v=(BD.cariskMissing||{})[pk]||0;h+=v?'<td style="color:#3b82f6;font-weight:600">'+v+'</td>':'<td class="br-z">—</td>';});
-  h+='<td class="br-sum">'+Object.values(BD.cariskMissing||{}).reduce(function(a,b){return a+b;},0)+'</td></tr>';
-  h+='</table></div>';
+  h+=`<div class="br-tw"><div class="br-ttl">Claims Needing Attention</div><table class="br-t">
+    <tr><th></th>${PT.map(l=>`<th>${l}</th>`).join('')}<th>Total</th></tr>
+    <tr><td>Left Over Claims</td>${PTK.map((k,i)=>nc(m.leftover[i],m.leftover_rows[k],'Left Over',PT[i])).join('')}<td class="br-sum">${S(m.leftover)}</td></tr>
+    <tr><td>Incomplete Carisk ${BD.cariskTs&&BD.cariskTs!=='—'?`<span style="font-size:10px;color:var(--muted);margin-left:6px">${BD.cariskTs}</span>`:''}
+    </td>${PTK.map((k,i)=>{const v=(BD.cariskIncomplete||{})[k]||0;return v?`<td style="color:#3b82f6;font-weight:600">${v}</td>`:'<td class="br-z">—</td>';}).join('')}<td class="br-sum">${Object.values(BD.cariskIncomplete||{}).reduce((a,b)=>a+b,0)}</td></tr>
+    <tr><td>Missing Documents</td>${PTK.map((k,i)=>{const v=(BD.cariskMissing||{})[k]||0;return v?`<td style="color:#3b82f6;font-weight:600">${v}</td>`:'<td class="br-z">—</td>';}).join('')}<td class="br-sum">${Object.values(BD.cariskMissing||{}).reduce((a,b)=>a+b,0)}</td></tr>
+  </table></div>`;
 
   h+=mkTable('Submitted Claims',[
     ['Electronic (2084)',m.electronic,m.electronic_rows],
     ['Manually (2085)',  m.manually,  m.manually_rows],
   ]);
 
-  var drows=[['EMAIL (2148)','d_email'],['FAX (2150)','d_fax'],['MAIL (2151)','d_mail'],
+  const drows=[['EMAIL (2148)','d_email'],['FAX (2150)','d_fax'],['MAIL (2151)','d_mail'],
     ['SECONDARY (2222)','d_secondary'],['CORRECTED BILL (2968)','d_corrected'],
     ['NEED W-NINE (2919)','d_need_w9'],['Other Billing (2505)','d_other'],['FWD TO BLNG (2382)','d_fwd_blng']];
-  h+='<div class="br-tw"><div class="br-ttl">Dispos</div><table class="br-t"><tr><th>Disposition</th>';
-  PT.forEach(function(l){h+='<th>'+l+'</th>';});h+='<th>Totals</th></tr>';
-  drows.forEach(function(dr){
-    var lbl=dr[0],dk=dr[1];
-    h+='<tr><td>'+lbl+'</td>';
-    PTK.forEach(function(pk,i){h+=nc(m[dk][i],m[dk+'_rows'][pk],lbl,PT[i]);});
-    h+='<td class="br-sum">'+S(m[dk])+'</td></tr>';
-  });
-  h+='<tr class="br-tot"><td>Totals</td>';
-  m.d_totals.forEach(function(v){h+='<td>'+(v||'—')+'</td>';});
-  h+='<td>'+S(m.d_totals)+'</td></tr></table></div>';
+  h+=`<div class="br-tw"><div class="br-ttl">Dispos</div><table class="br-t">
+    <tr><th>Disposition</th>${PT.map(l=>`<th>${l}</th>`).join('')}<th>Totals</th></tr>
+    ${drows.map(([lbl,k])=>`<tr><td>${lbl}</td>${PTK.map((pt,i)=>nc(m[k][i],m[k+'_rows'][pt],lbl,PT[i])).join('')}<td class="br-sum">${S(m[k])}</td></tr>`).join('')}
+    <tr class="br-tot"><td>Totals</td>${m.d_totals.map(v=>`<td>${v||'—'}</td>`).join('')}<td>${S(m.d_totals)}</td></tr>
+  </table></div>`;
 
-  var ipTot=BD.ipUbDispos.reduce(function(a,d){return a+(m.ip_ubs[d.code].total||0);},0);
-  h+='<div class="br-bg2"><div class="br-tw"><div class="br-ttl">Inpatient UB's to Check</div><table class="br-t">';
-  h+='<tr><th>Facility</th><th>Total</th><th>Ready</th></tr>';
-  BD.ipUbDispos.forEach(function(d){
-    var v=m.ip_ubs[d.code].total||0;
-    var ipk=HAS_DETAILS&&v?store(m.ip_ubs[d.code].rows||[]):null;
-    var cls=v&&HAS_DETAILS?'class="br-n" onclick="brOpen(''+d.label+'',window._RS[''+ipk+''],'')"':'class="br-z"';
-    h+='<tr><td>'+d.label+'</td><td '+cls+'>'+( v||'—')+'</td><td class="br-man">✎</td></tr>';
-  });
-  h+='<tr class="br-tot"><td>Total</td><td>'+ipTot+'</td><td>—</td></tr></table></div>';
-
-  h+='<div><div class="br-tw" style="margin-bottom:12px"><div class="br-ttl">Claim Edit WQ's</div><table class="br-t">';
-  h+='<tr><th>WQ #</th><th>Facility</th><th>Count</th></tr>';
-  BD.claimWqs.forEach(function(w){h+='<tr><td>'+w.num+'</td><td>'+w.fac+'</td><td class="br-man">✎</td></tr>';});
-  h+='<tr class="br-tot"><td colspan="2">Total</td><td>—</td></tr></table></div>';
-
-  h+='<div class="br-tw"><div class="br-ttl">NYPD / Health Insurance</div><table class="br-t">';
-  h+='<tr><th>NYPD (2201)</th><th>Health Ins.</th></tr><tr>';
-  if(m.nypd&&HAS_DETAILS){
-    h+='<td class="br-n" onclick="brOpen('NYPD',window._RS[''+nypd_k+''],'dispo 2201')">'+m.nypd+'</td>';
-  } else {
-    h+='<td class="br-z">'+(m.nypd||'—')+'</td>';
-  }
-  h+='<td class="br-z">—</td></tr></table></div></div></div>';
-
+  const ipTot=BD.ipUbDispos.reduce((a,{code})=>a+(m.ip_ubs[code].total||0),0);
+  h+=`<div class="br-bg2">
+    <div class="br-tw"><div class="br-ttl">Inpatient UB's to Check</div><table class="br-t">
+      <tr><th>Facility</th><th>Total</th><th>Ready</th></tr>
+      ${BD.ipUbDispos.map(({code,label})=>{
+        const v=m.ip_ubs[code].total||0;
+        const ipk=HAS_DETAILS&&v?store(m.ip_ubs[code].rows||[]):null;
+        const cls=v&&HAS_DETAILS?`class="br-n" onclick="brOpen('${label}',window._RS['${ipk}'],'')"`:'class="br-z"';
+        return`<tr><td>${label}</td><td ${cls}>${v||'—'}</td><td class="br-man">✎</td></tr>`;
+      }).join('')}
+      <tr class="br-tot"><td>Total</td><td>${ipTot}</td><td>—</td></tr>
+    </table></div>
+    <div>
+      <div class="br-tw" style="margin-bottom:12px"><div class="br-ttl">Claim Edit WQ's</div><table class="br-t">
+        <tr><th>WQ #</th><th>Facility</th><th>Count</th></tr>
+        ${BD.claimWqs.map(({num,fac})=>`<tr><td>${num}</td><td>${fac}</td><td class="br-man">✎</td></tr>`).join('')}
+        <tr class="br-tot"><td colspan="2">Total</td><td>—</td></tr>
+      </table></div>
+      <div class="br-tw"><div class="br-ttl">NYPD / Health Insurance</div><table class="br-t">
+        <tr><th>NYPD (2201)</th><th>Health Ins.</th></tr>
+        <tr><td class="${m.nypd&&HAS_DETAILS?'br-n':'br-z'}" ${m.nypd&&HAS_DETAILS?`onclick="brOpen('NYPD',window._RS['${nypd_k}'],'dispo 2201')"`:''}>${m.nypd||'—'}</td><td class="br-z">—</td></tr>
+      </table></div>
+    </div>
+  </div>`;
   return h;
 }
 
-// ── Tabs ───────────────────────────────────────────────────────
+// ── Tabs ──────────────────────────────────────────────────────
 function buildUI(){
-  var root=document.getElementById('br-root');
+  const root=document.getElementById('br-root');
+  const sheets=BD.isMonday
+    ? [
+        {key:'mon', label:'Product Mondays', m:BD.monday, date:BD.friDate, c:'#10b981'}
+      ]
+    : [
+        {key:'tue', label:'Prod Billing Tues - Fri', m:BD.tuefri, date:BD.yestDate, c:'#3b82f6'}
+      ];
 
-  // Si es lunes: mostrar ambos tabs. Si no es lunes: solo Tue-Fri.
-  var sheets=BD.isMonday
-    ?[{key:'mon',label:'Product Mondays',         m:BD.monday, date:BD.friDate,  c:'#10b981'},
-      {key:'tue',label:'Prod Billing Tuers - Fri',m:BD.tuefri, date:BD.yestDate, c:'#3b82f6'}]
-    :[{key:'tue',label:'Prod Billing Tuers - Fri',m:BD.tuefri, date:BD.yestDate, c:'#3b82f6'}];
-
-  var tabs='<div class="br-tabs">';
-  sheets.forEach(function(s,i){
-    tabs+='<button class="br-tab'+(i===0?' br-tab-a':'')+'" id="brtab-'+s.key+'" onclick="brTab(''+s.key+'')">';
-    tabs+='<span style="width:8px;height:8px;border-radius:50%;background:'+s.c+';display:inline-block;margin-right:7px;vertical-align:middle"></span>';
-    tabs+=s.label+'</button>';
+  let tabs='<div class="br-tabs">';
+  sheets.forEach((s,i)=>{
+    tabs += `<button class="br-tab${i===0?' br-tab-a':''}" id="brtab-${s.key}" onclick="brTab('${s.key}')">
+      <span style="width:8px;height:8px;border-radius:50%;background:${s.c};display:inline-block;margin-right:7px;vertical-align:middle"></span>
+      ${s.label}
+    </button>`;
   });
-  tabs+='</div>';
+  tabs += '</div>';
 
-  var panels='';
-  sheets.forEach(function(s,i){
-    panels+='<div class="'+(i?'br-panel br-hidden':'br-panel')+'" id="brpanel-'+s.key+'">';
-    panels+=buildPanel(s.m,s.label,s.date);
-    panels+='</div>';
+  let panels='';
+  sheets.forEach((s,i)=>{
+    panels += `<div class="${i ? 'br-panel br-hidden' : 'br-panel'}" id="brpanel-${s.key}">
+      ${buildPanel(s.m,s.label,s.date)}
+    </div>`;
   });
 
-  root.innerHTML=tabs+panels;
+  root.innerHTML = tabs + panels;
 }
-
 window.brTab=function(k){
-  document.querySelectorAll('.br-tab').forEach(function(t){t.classList.remove('br-tab-a');});
-  document.querySelectorAll('.br-panel').forEach(function(p){p.classList.add('br-hidden');});
+  document.querySelectorAll('.br-tab').forEach(t=>t.classList.remove('br-tab-a'));
+  document.querySelectorAll('.br-panel').forEach(p=>p.classList.add('br-hidden'));
   document.getElementById('brtab-'+k).classList.add('br-tab-a');
   document.getElementById('brpanel-'+k).classList.remove('br-hidden');
 };
 
 // ── Excel download ─────────────────────────────────────────────
-var _XLS=null;
+let _XLS=null;
 window.brDl=async function(sn){
-  var m=sn.includes('Mondays')?BD.monday:BD.tuefri;
-  if(!_XLS)await new Promise(function(res,rej){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=function(){_XLS=window.XLSX;res();};s.onerror=rej;document.head.appendChild(s);});
-  var wb=_XLS.utils.book_new();
-  var cols=[''].concat(PT).concat(['Total']);
-  var data=[['Daily Billing Report'],[BD.today],[],['TO BILL TODAY'],cols,
-    ['Carisk'].concat(m.carisk).concat([S(m.carisk)]),
-    ['Relay'].concat(m.relay).concat([S(m.relay)]),
-    ['To Bill Today'].concat(m.total).concat([S(m.total)]),
+  const m=sn.includes('Billing')?BD.tuefri:BD.monday;
+  if(!_XLS)await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=()=>{_XLS=window.XLSX;res()};s.onerror=rej;document.head.appendChild(s);});
+  const wb=_XLS.utils.book_new();
+  const cols=['',...PT,'Total'];
+  const data=[['Daily Billing Report'],[BD.today],[],['TO BILL TODAY'],cols,
+    ['Carisk',...m.carisk,S(m.carisk)],['Relay',...m.relay,S(m.relay)],['To Bill Today',...m.total,S(m.total)],
     [],['CLAIMS NEEDING ATTENTION'],cols,
-    ['Left Over Claims'].concat(m.leftover).concat([S(m.leftover)]),
-    ['Incomplete Carisk (manual)',0,0,0,0,0,0,0],
-    ['Missing Documents (manual)',0,0,0,0,0,0,0],
+    ['Left Over Claims',...m.leftover,S(m.leftover)],['Incomplete Carisk (manual)',0,0,0,0,0,0,0],['Missing Documents (manual)',0,0,0,0,0,0,0],
     [],['SUBMITTED CLAIMS'],cols,
-    ['Electronic (2084)'].concat(m.electronic).concat([S(m.electronic)]),
-    ['Manually (2085)'].concat(m.manually).concat([S(m.manually)]),
+    ['Electronic (2084)',...m.electronic,S(m.electronic)],['Manually (2085)',...m.manually,S(m.manually)],
     [],['DISPOS'],cols,
-    ['EMAIL (2148)'].concat(m.d_email).concat([S(m.d_email)]),
-    ['FAX (2150)'].concat(m.d_fax).concat([S(m.d_fax)]),
-    ['MAIL (2151)'].concat(m.d_mail).concat([S(m.d_mail)]),
-    ['SECONDARY (2222)'].concat(m.d_secondary).concat([S(m.d_secondary)]),
-    ['CORRECTED BILL (2968)'].concat(m.d_corrected).concat([S(m.d_corrected)]),
-    ['NEED W-NINE (2919)'].concat(m.d_need_w9).concat([S(m.d_need_w9)]),
-    ['Other Billing (2505)'].concat(m.d_other).concat([S(m.d_other)]),
-    ['FWD TO BLNG (2382)'].concat(m.d_fwd_blng).concat([S(m.d_fwd_blng)]),
-    ['Totals'].concat(m.d_totals).concat([S(m.d_totals)]),
+    ['EMAIL (2148)',...m.d_email,S(m.d_email)],['FAX (2150)',...m.d_fax,S(m.d_fax)],
+    ['MAIL (2151)',...m.d_mail,S(m.d_mail)],['SECONDARY (2222)',...m.d_secondary,S(m.d_secondary)],
+    ['CORRECTED BILL (2968)',...m.d_corrected,S(m.d_corrected)],['NEED W-NINE (2919)',...m.d_need_w9,S(m.d_need_w9)],
+    ['Other Billing (2505)',...m.d_other,S(m.d_other)],['FWD TO BLNG (2382)',...m.d_fwd_blng,S(m.d_fwd_blng)],
+    ['Totals',...m.d_totals,S(m.d_totals)],
     [],['INPATIENT UBs'],['Facility','Total','Ready'],
+    ...BD.ipUbDispos.map(({code,label})=>[label,m.ip_ubs[code].total||0,'?']),
+    [],['NYPD (2201)','','','','HEALTH INSURANCE'],[m.nypd,'','','',0],
   ];
-  BD.ipUbDispos.forEach(function(d){data.push([d.label,m.ip_ubs[d.code].total||0,'?']);});
-  data.push([],['NYPD (2201)','','','','HEALTH INSURANCE'],[m.nypd,'','','',0]);
-  var ws=_XLS.utils.aoa_to_sheet(data);
+  const ws=_XLS.utils.aoa_to_sheet(data);
   ws['!cols']=[{wch:32},{wch:13},{wch:13},{wch:13},{wch:14},{wch:14},{wch:12},{wch:10},{wch:18}];
   _XLS.utils.book_append_sheet(wb,ws,sn);
-  _XLS.writeFile(wb,'NFWC_'+sn.replace(/\s+/g,'_')+'_'+BD.today.replace(/\//g,'-')+'.xlsx');
+  _XLS.writeFile(wb,`NFWC_${sn.replace(/\s+/g,'_')}_${BD.today.replace(/\//g,'-')}.xlsx`);
 };
 
 buildUI();
