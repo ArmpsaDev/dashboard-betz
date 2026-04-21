@@ -179,7 +179,7 @@ tbody tr:hover{background:#f8fafc}
       <h1>Productivity Overview</h1>
       <div class="topbar-meta">
         <span class="badge-live">LIVE</span>
-        20/04/2026 22:26 &nbsp;&middot;&nbsp; COLL_STATS.csv
+        20/04/2026 22:28 &nbsp;&middot;&nbsp; COLL_STATS.csv
       </div>
     </div>
     <section id="sec-overview" class="section active">
@@ -236,9 +236,9 @@ const PT=BD.colLabels;
 const PTK=["MEDISYS OP","MEDISYS IP","MEDISYS PB","MONTE IP HB","MONTE OP HB","MONTE PB"];
 const S=a=>a.reduce((x,y)=>x+y,0);
 
-// Row storage — avoids large inline JSON in onclick attrs
-const RS={};let RI=0;
-function store(rows){const k='r'+(RI++);RS[k]=rows||[];return k;}
+// Row storage — on window so inline onclicks can access it
+window._RS={};window._RI=0;
+function store(rows){const k='r'+(window._RI++);window._RS[k]=rows||[];return k;}
 
 // BILLING_HAS_DETAILS injected by Python: true=network version, false=GitHub version
 const HAS_DETAILS=false;
@@ -247,7 +247,7 @@ const HAS_DETAILS=false;
 let _rows=[];
 window.brClose=function(e){if(!e||e.target===document.getElementById('brOverlay'))document.getElementById('brOverlay').classList.remove('open');};
 document.addEventListener('keydown',e=>{if(e.key==='Escape')brClose();});
-function brOpen(title,rows,meta){
+window.brOpen=function(title,rows,meta){
   if(!HAS_DETAILS)return;
   _rows=rows||[];
   document.getElementById('brTitle').textContent=title;
@@ -274,7 +274,7 @@ function nc(v,rows,lbl,pt){
   const k=store(rows);
   const sl=(lbl||'').replace(/'/g,"&#39;");
   const sp=(pt||'').replace(/'/g,"&#39;");
-  return`<td class="br-n" onclick="brOpen('${sl}',RS['${k}'],'${sp}')">${v}</td>`;
+  return`<td class="br-n" onclick="brOpen('${sl}',window._RS['${k}'],'${sp}')">${v}</td>`;
 }
 
 // ── Table builder ─────────────────────────────────────────────
@@ -303,7 +303,7 @@ function buildPanel(m,sheetName,dateStr){
     <div class="br-kpi"><div class="br-kl">To Bill Today</div><div class="br-kv" style="color:#3b82f6">${S(m.total)}</div></div>
     <div class="br-kpi"><div class="br-kl">Electronic</div><div class="br-kv" style="color:#06b6d4">${S(m.electronic)}</div></div>
     <div class="br-kpi"><div class="br-kl">Left Over</div><div class="br-kv" style="color:#f59e0b">${S(m.leftover)}</div></div>
-    <div class="br-kpi" ${HAS_DETAILS?`style="cursor:pointer" onclick="brOpen('NYPD',RS['${nypd_k}'],'dispo 2201')"`:''}><div class="br-kl">NYPD (2201)</div><div class="br-kv" style="color:#10b981">${m.nypd}</div></div>
+    <div class="br-kpi" ${HAS_DETAILS?`style="cursor:pointer" onclick="brOpen('NYPD',window._RS['${nypd_k}'],'dispo 2201')"`:''}><div class="br-kl">NYPD (2201)</div><div class="br-kv" style="color:#10b981">${m.nypd}</div></div>
   </div>`;
 
   h+=mkTable('To Bill Today',[
@@ -340,7 +340,7 @@ function buildPanel(m,sheetName,dateStr){
       ${BD.ipUbDispos.map(({code,label})=>{
         const v=m.ip_ubs[code].total||0;
         const ipk=HAS_DETAILS&&v?store(m.ip_ubs[code].rows||[]):null;
-        const cls=v&&HAS_DETAILS?`class="br-n" onclick="brOpen('${label}',RS['${ipk}'],'')"`:'class="br-z"';
+        const cls=v&&HAS_DETAILS?`class="br-n" onclick="brOpen('${label}',window._RS['${ipk}'],'')"`:'class="br-z"';
         return`<tr><td>${label}</td><td ${cls}>${v||'—'}</td><td class="br-man">✎</td></tr>`;
       }).join('')}
       <tr class="br-tot"><td>Total</td><td>${ipTot}</td><td>—</td></tr>
@@ -353,7 +353,7 @@ function buildPanel(m,sheetName,dateStr){
       </table></div>
       <div class="br-tw"><div class="br-ttl">NYPD / Health Insurance</div><table class="br-t">
         <tr><th>NYPD (2201)</th><th>Health Ins.</th></tr>
-        <tr><td class="${m.nypd&&HAS_DETAILS?'br-n':'br-z'}" ${m.nypd&&HAS_DETAILS?`onclick="brOpen('NYPD',RS['${nypd_k}'],'dispo 2201')"`:''}>${m.nypd||'—'}</td><td class="br-z">—</td></tr>
+        <tr><td class="${m.nypd&&HAS_DETAILS?'br-n':'br-z'}" ${m.nypd&&HAS_DETAILS?`onclick="brOpen('NYPD',window._RS['${nypd_k}'],'dispo 2201')"`:''}>${m.nypd||'—'}</td><td class="br-z">—</td></tr>
       </table></div>
     </div>
   </div>`;
